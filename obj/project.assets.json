@@ -1,0 +1,148 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Fasm.NET/1.70.3": {
+        "type": "package",
+        "compile": {
+          "lib/Fasm.NET.dll": {}
+        },
+        "runtime": {
+          "lib/Fasm.NET.dll": {}
+        }
+      },
+      "MemorySharp/1.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Fasm.NET": "1.70.3"
+        },
+        "compile": {
+          "lib/MemorySharp.dll": {}
+        },
+        "runtime": {
+          "lib/MemorySharp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Fasm.NET/1.70.3": {
+      "sha512": "AtYdojSWvyKrqrx4y8yE25c9U3ZvXFI/5QbBwDUaRv+ApD/K2GRF/hthTwh1RC3WsOUXXSr1ZknqrEkRWxfGVQ==",
+      "type": "package",
+      "path": "fasm.net/1.70.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Fasm.NET.xml",
+        "fasm.net.1.70.3.nupkg.sha512",
+        "fasm.net.nuspec",
+        "lib/Fasm.NET.dll"
+      ]
+    },
+    "MemorySharp/1.2.0": {
+      "sha512": "MABmBqlDmakBXxrY/+B1BH7gdITvz7b2MnJNdcNPLt8ieqvfeLvGSi9W+5NsNtujzxJU8w2rfqN4dHEu4crCXg==",
+      "type": "package",
+      "path": "memorysharp/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/LICENSE",
+        "lib/MemorySharp.XML",
+        "lib/MemorySharp.dll",
+        "memorysharp.1.2.0.nupkg.sha512",
+        "memorysharp.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "MemorySharp >= 1.2.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\PC_volt\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\git\\rev2-LabTool\\rev2-LabTool.csproj",
+      "projectName": "rev2-LabTool",
+      "projectPath": "C:\\git\\rev2-LabTool\\rev2-LabTool.csproj",
+      "packagesPath": "C:\\Users\\PC_volt\\.nuget\\packages\\",
+      "outputPath": "C:\\git\\rev2-LabTool\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\PC_volt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "dependencies": {
+          "MemorySharp": {
+            "target": "Package",
+            "version": "[1.2.0, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Fasm.NET 1.70.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Fasm.NET",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MemorySharp 1.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "MemorySharp",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}

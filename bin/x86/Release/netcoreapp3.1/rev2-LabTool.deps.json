@@ -1,0 +1,59 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "rev2-LabTool/1.0.0": {
+        "dependencies": {
+          "MemorySharp": "1.2.0"
+        },
+        "runtime": {
+          "rev2-LabTool.dll": {}
+        }
+      },
+      "Fasm.NET/1.70.3": {
+        "runtime": {
+          "lib/Fasm.NET.dll": {
+            "assemblyVersion": "1.0.4939.27955",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "MemorySharp/1.2.0": {
+        "dependencies": {
+          "Fasm.NET": "1.70.3"
+        },
+        "runtime": {
+          "lib/MemorySharp.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "rev2-LabTool/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Fasm.NET/1.70.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AtYdojSWvyKrqrx4y8yE25c9U3ZvXFI/5QbBwDUaRv+ApD/K2GRF/hthTwh1RC3WsOUXXSr1ZknqrEkRWxfGVQ==",
+      "path": "fasm.net/1.70.3",
+      "hashPath": "fasm.net.1.70.3.nupkg.sha512"
+    },
+    "MemorySharp/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MABmBqlDmakBXxrY/+B1BH7gdITvz7b2MnJNdcNPLt8ieqvfeLvGSi9W+5NsNtujzxJU8w2rfqN4dHEu4crCXg==",
+      "path": "memorysharp/1.2.0",
+      "hashPath": "memorysharp.1.2.0.nupkg.sha512"
+    }
+  }
+}
