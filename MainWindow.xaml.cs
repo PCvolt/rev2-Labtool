@@ -53,46 +53,24 @@ namespace rev2_LabTool
 			{
 				Thread.Sleep(15);
 
-				if (labtool.ReadMenuLabel().Equals("PSM_TRP_GuardTypeT")) //Workaround, it is best to find the actual mode of the game rather than relying on selecting a label
-				{
-					labtool.updateFrameInfo();
+				labtool.updateFrameInfo();
 
-					if (removeHint)
-					{
-						Dispatcher.BeginInvoke(new Action(() =>
-						{
-							this.faLabel.Content = "";
-						}));
-						removeHint = false;
-					}
-					
-					if (labtool.updateFA)
-					{
-						Dispatcher.BeginInvoke(new Action(() =>
-						{
-							this.faLabel.Content = labtool.frameAdvantage + "F";
-						}));
-					}
-
-					if (labtool.updateGap)
-					{
-						Dispatcher.BeginInvoke(new Action(() =>
-						{
-							string concat = this.gapsTextblock.Text;
-							this.gapsTextblock.Text = concat.Insert(0, labtool.rememberGap.ToString() + "F" + Environment.NewLine);
-						}));
-						labtool.updateGap = false;
-					}
-					//TODO: Johnny stance (?)
-				}
-				else
+				if (labtool.updateFA)
 				{
 					Dispatcher.BeginInvoke(new Action(() =>
 					{
-						this.faLabel.Content = "Select 'Block Type'";
+						this.faLabel.Content = labtool.frameAdvantage + "F";
 					}));
-					removeHint = true;
+				}
 
+				if (labtool.updateGap)
+				{
+					Dispatcher.BeginInvoke(new Action(() =>
+					{
+						string concat = this.gapsTextblock.Text;
+						this.gapsTextblock.Text = concat.Insert(0, labtool.rememberGap.ToString() + "F" + Environment.NewLine);
+					}));
+					labtool.updateGap = false;
 				}
 			}
 		}
