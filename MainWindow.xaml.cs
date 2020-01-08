@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading;
 using System.Windows;
 
@@ -10,6 +11,7 @@ namespace rev2_LabTool
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private readonly string _githubPage = ConfigurationManager.AppSettings.Get("GithubPage");
 		private Labtool labtool;
 
 		public MainWindow()
@@ -44,36 +46,65 @@ namespace rev2_LabTool
 			labtool?.Dispose();
 		}
 
+		bool removeHint = false;
 		private void refreshInfo()
 		{
 			while (true)
 			{
-				labtool.frameAdvantageLoop();//System.ArgumentException
+				Thread.Sleep(15);
 
-				if (labtool.updateFA)
+				if (labtool.ReadMenuLabel().Equals("PSM_TRP_GuardTypeT")) //Workaround, it is best to find the actual mode of the game rather than relying on selecting a label
+				{
+					labtool.updateFrameInfo();
+
+					if (removeHint)
+					{
+						Dispatcher.BeginInvoke(new Action(() =>
+						{
+							this.faLabel.Content = "";
+						}));
+						removeHint = false;
+					}
+					
+					if (labtool.updateFA)
+					{
+						Dispatcher.BeginInvoke(new Action(() =>
+						{
+							this.faLabel.Content = labtool.frameAdvantage + "F";
+						}));
+					}
+
+					if (labtool.updateGap)
+					{
+						Dispatcher.BeginInvoke(new Action(() =>
+						{
+							string concat = this.gapsTextblock.Text;
+							this.gapsTextblock.Text = concat.Insert(0, labtool.rememberGap.ToString() + "F" + Environment.NewLine);
+						}));
+						labtool.updateGap = false;
+					}
+					//TODO: Johnny stance (?)
+				}
+				else
 				{
 					Dispatcher.BeginInvoke(new Action(() =>
 					{
-						this.faLabel.Content = labtool.frameAdvantage + "F";
+						this.faLabel.Content = "Select 'Block Type'";
 					}));
-				}
+					removeHint = true;
 
-				if (labtool.updateGap)
-				{
-					Dispatcher.BeginInvoke(new Action(() =>
-					{
-						string concat = this.gapsTextblock.Text;
-						this.gapsTextblock.Text = concat.Insert(0, labtool.rememberGap.ToString() + "F" + Environment.NewLine);
-					}));
-					labtool.updateGap = false;
 				}
-				//TODO: Johnny stance
 			}
 		}
 
 		private void clearGapsString(object sender, RoutedEventArgs e)
 		{
 			this.gapsTextblock.Text = "";
+		}
+
+		private void MenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			System.Diagnostics.Process.Start("explorer.exe", _githubPage);
 		}
 	}
 }

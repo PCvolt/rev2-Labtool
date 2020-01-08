@@ -21,24 +21,34 @@ namespace rev2_LabTool
 		private readonly int _AnimStringPtrOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AnimStringPtrOffset"), 16);
 		private readonly IntPtr _frameCountOffset = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get("FrameCountOffset"), 16));
 
-		private readonly string standAnim = "CmnActStand";
-		private readonly string crouchAnim = "CmnActCrouch";
-		private readonly string jumpAnim = "CmnActJump";
-		private readonly string stand2crouchAnim = "CmnActStand2Crouch";
-		private readonly string crouch2standAnim = "CmnActCrouch2Stand";
-		private readonly string fwalkAnim = "CmnActFWalk";
-		private readonly string bwalkAnim = "CmnActBWalk";
+		private HashSet<string> idleAnimHash;
+		private HashSet<string> blockingAnimHash;
 
-		private readonly string lowBlockLoop = "CmnActCrouchGuardLoop";
-		private readonly string midBlockLoop = "CmnActMidGuardLoop";
-		private readonly string highBlockLoop = "CmnActHighGuardLoop";
-		private readonly string airBlockLoop = "CmnActAirGuardLoop";
+		string[] idleAnimArray =
+		{
+			"CmnActStand",
+			"CmnActCrouch",
+			"CmnActJump",
+			"CmnActStand2Crouch",
+			"CmnActFWalk",
+			"CmnActFWalk",
+			"CmnActBWalk",
+			"CmnActCrouchGuardEnd",
+			"CmnActMidGuardEnd",
+			"CmnActHighGuardEnd",
+			"CmnActAirGuardEnd"
+		};
 
-		private readonly string lowBlockEnd = "CmnActCrouchGuardEnd";
-		private readonly string midBlockEnd = "CmnActMidGuardEnd";
-		private readonly string highBlockEnd = "CmnActHighGuardEnd";
-		private readonly string airBlockEnd = "CmnActAirGuardEnd";
+		string[] blockingAnimArray =
+		{
+			"CmnActCrouchGuardLoop",
+			"CmnActMidGuardLoop",
+			"CmnActHighGuardLoop",
+			"CmnActAirGuardLoop"
+		};
 		#endregion
+
+		public readonly int _menuLabel = Convert.ToInt32(ConfigurationManager.AppSettings.Get("MenuLabel"), 16);
 
 		public string p1CurrentAnim;
 		public string p2CurrentAnim;
@@ -56,7 +66,16 @@ namespace rev2_LabTool
 				throw new Exception("GGxrd is not open.");
 			}
 
+			idleAnimHash = new HashSet<string>(idleAnimArray);
+			blockingAnimHash = new HashSet<string>(blockingAnimArray);
 			_memorySharp = new MemorySharp(process);
+		}
+
+		public string ReadMenuLabel()
+		{
+			var str = _memorySharp.ReadString(new IntPtr(0x0) + _menuLabel, false, 32);
+
+			return str;
 		}
 
 		public string ReadAnimationString(int player)
@@ -92,107 +111,104 @@ namespace rev2_LabTool
 			return string.Empty;
 		}
 
-	public int FrameCount()
-	{
-		try
+		public int FrameCount()
 		{
-			return _memorySharp.Read<int>(_frameCountOffset); //exception: handle not valid or closed
-
-		}
-		catch (System.ArgumentException exception)
-		{
-			Dispose();
-			return 0;
-		}
-	}
-
-	public bool IsIdle(string anim)
-	{
-		if (anim.Equals(standAnim) || anim.Equals(crouchAnim) || anim.Equals(jumpAnim) || anim.Equals(crouch2standAnim) || anim.Equals(stand2crouchAnim) || anim.Equals(fwalkAnim) || anim.Equals(bwalkAnim))
-			return true;
-
-		if (anim.Equals(lowBlockEnd) || anim.Equals(midBlockEnd) || anim.Equals(highBlockEnd) || anim.Equals(airBlockEnd))
-			return true;
-
-		//TODO: preparing to block animations return true
-		return false;
-	}
-
-	public bool IsBlocking(string anim)
-	{
-		if (anim.Equals(lowBlockLoop) || anim.Equals(midBlockLoop) || anim.Equals(highBlockLoop) || anim.Equals(airBlockLoop))
-			return true;
-		return false;
-	}
-
-	public bool blockstring = false;
-	public int frameAdvantage;
-	public bool updateFA;
-	public bool updateGap = false;
-	public int idleCount;
-	public int rememberGap;
-	public void frameAdvantageLoop() //rename
-	{
-
-		do
-		{
-			currFrame = FrameCount();
-		}
-		while (currFrame == prevFrame);
-
-		p1CurrentAnim = ReadAnimationString(1);
-		p2CurrentAnim = ReadAnimationString(2);
-		p1isIdle = IsIdle(p1CurrentAnim);
-		p2isIdle = IsIdle(p2CurrentAnim);
-
-
-
-		updateFA = false;
-		if (!p1isIdle && !p2isIdle)
-		{
-			frameAdvantage = 0;
-			blockstring = true;
-		}
-		if ((p1isIdle || p2isIdle) && blockstring)
-		{
-			if (p1isIdle && p2isIdle)
+			try
 			{
-				blockstring = false;
-				updateFA = true;
+				return _memorySharp.Read<int>(_frameCountOffset); //exception: handle not valid or closed
+
 			}
-			else if (p1isIdle)
-				++frameAdvantage;
-			else if (p2isIdle)
-				--frameAdvantage;
+			catch (System.ArgumentException exception)
+			{
+				Dispose();
+				return 0;
+			}
 		}
 
+		public bool IsIdle(string anim)
+		{
+			if (idleAnimHash.Contains(anim))
+				return true;
 
-		if (IsBlocking(p2CurrentAnim))
+			//TODO: preparing to block animations return true
+			return false;
+		}
+
+		public bool IsBlocking(string anim)
+		{
+			if (blockingAnimHash.Contains(anim))
+				return true;
+			return false;
+		}
+
+		public bool blockstring = false;
+		public int frameAdvantage;
+		public bool updateFA;
+		public bool updateGap = false;
+		public int idleCount;
+		public int rememberGap;
+		public void updateFrameInfo()
 		{
 
-			if (idleCount != -1)
+			do
+			{
+				currFrame = FrameCount();
+			}
+			while (currFrame == prevFrame);
+
+			p1CurrentAnim = ReadAnimationString(1);
+			p2CurrentAnim = ReadAnimationString(2);
+			p1isIdle = IsIdle(p1CurrentAnim);
+			p2isIdle = IsIdle(p2CurrentAnim);
+
+
+
+			updateFA = false;
+			if (!p1isIdle && !p2isIdle)
+			{
+				frameAdvantage = 0;
+				blockstring = true;
+			}
+			if ((p1isIdle || p2isIdle) && blockstring)
+			{
+				if (p1isIdle && p2isIdle)
+				{
+					blockstring = false;
+					updateFA = true;
+				}
+				else if (p1isIdle)
+					++frameAdvantage;
+				else if (p2isIdle)
+					--frameAdvantage;
+			}
+
+
+			if (IsBlocking(p2CurrentAnim))
+			{
+
+				if (idleCount != -1)
+				{
+					++idleCount;
+
+					if (idleCount <= 30)
+					{
+						rememberGap = idleCount;
+						updateGap = true;
+					}
+					idleCount = -1;
+				}
+			}
+			else
 			{
 				++idleCount;
-
-				if (idleCount <= 30)
-				{
-					rememberGap = idleCount;
-					updateGap = true;
-				}
-				idleCount = -1;
 			}
+
+			prevFrame = currFrame;
 		}
-		else
+
+		public void Dispose()
 		{
-			++idleCount;
+			_memorySharp?.Dispose();
 		}
-
-		prevFrame = currFrame;
 	}
-
-	public void Dispose()
-	{
-		_memorySharp?.Dispose();
-	}
-}
 }

@@ -5,22 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:rev2_LabTool"
         mc:Ignorable="d"
-        Title="rev2-Labtool (v0.1)" Height="180" Width="288"
+        Title="rev2-Labtool (v0.1)" Height="193" Width="319"
 		Loaded="Window_Loaded" Closed="Window_Closed"
 		WindowStartupLocation="CenterScreen">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
-		<GroupBox Header="Frame Data" Margin="10,10,10,10"/>
 
-		<Label x:Name="frameAdvantageLabel" Content="Frame Advantage: " HorizontalAlignment="Left" Margin="26,35,0,0" VerticalAlignment="Top"/>
-		<Label x:Name="gapsLabel" Content="Gaps:" HorizontalAlignment="Left" Margin="95,61,0,0" VerticalAlignment="Top"/>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="Github" Click="MenuItem_Click"></MenuItem>
+		</Menu>
 
-		<Label x:Name="faLabel" Content="" HorizontalAlignment="Left" Margin="140,35,0,0" VerticalAlignment="Top"/>
-		<TextBox x:Name="gapsTextblock" Margin="139,66,73,20" Text="" TextWrapping="Wrap" IsReadOnly="True"/>
-		<Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="64,64,0,0" VerticalAlignment="Top" Click="clearGapsString"/>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<GroupBox Header="Frame Data" Margin="10,10,10,10"/>
 
+			<Label x:Name="frameAdvantageLabel" Content="Frame Advantage: " HorizontalAlignment="Left" Margin="26,38,0,0" VerticalAlignment="Top"/>
+			<Label x:Name="gapsLabel" Content="Gaps:" HorizontalAlignment="Left" Margin="95,64,0,0" VerticalAlignment="Top"/>
 
-	</Grid>
+			<Label x:Name="faLabel" Content="" HorizontalAlignment="Left" Margin="140,38,0,0" VerticalAlignment="Top"/>
+			<TextBox x:Name="gapsTextblock" Margin="139,73,86,20" Text="" TextWrapping="Wrap" IsReadOnly="True"/>
+			<Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="64,67,0,0" VerticalAlignment="Top" Click="clearGapsString"/>
+
+		</Grid>
+	</DockPanel>
 </Window>
