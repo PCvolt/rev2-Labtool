@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:rev2_LabTool"
         mc:Ignorable="d"
-        Title="rev2-Labtool (v0.1)" Height="193" Width="319"
+        Title="rev2-Labtool (v0.1.1)" Height="193" Width="319"
 		Loaded="Window_Loaded" Closed="Window_Closed"
-		WindowStartupLocation="CenterScreen">
+		WindowStartupLocation="CenterScreen" Topmost="True">
 
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">

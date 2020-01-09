@@ -11,4 +11,4 @@ External tool which adds more features to the training mode of Guilty Gear Xrd R
 - Gap counter in P1's blockstrings (up to 30F gaps)
 
 ## Known bugs
-- Attacks such as blitz or Ramlethal 5PPP have a recovery animation which is not considered "idle" but can be cancelled as if it were an idle animation. To display the proper frame advantage from those attacks, cancel the recovery with walk.
+- Attacks such as blitz or Ramlethal 5PPP have a part of their recovery animation which is cancellable but has no (found) indication of being so. Thus, to display the proper frame advantage from those attacks, cancel the recovery with walk.

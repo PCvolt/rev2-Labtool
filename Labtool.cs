@@ -30,7 +30,7 @@ namespace rev2_LabTool
 			"CmnActCrouch",
 			"CmnActJump",
 			"CmnActStand2Crouch",
-			"CmnActFWalk",
+			"CmnActCrouch2Stand",
 			"CmnActFWalk",
 			"CmnActBWalk",
 			"CmnActCrouchGuardEnd",
