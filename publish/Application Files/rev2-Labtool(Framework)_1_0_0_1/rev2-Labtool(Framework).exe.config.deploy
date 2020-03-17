@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <startup>
+	<supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+  <appSettings>
+	<add key="GGProcessName" value="GuiltyGearXrd" />
+
+	<add key="P1AnimStringPtr" value="0x1B18C78" />
+	<add key="P2AnimStringPtr" value="0x1B18C7C" />
+
+	<add key="AnimStringPtrOffset" value="0x244C" />
+	<add key="FrameCountOffset" value="0x1BD1F90" />
+
+	<add key="MenuLabel" value="0x0280C450"/>
+
+
+	<add key="GithubPage" value="https://github.com/PCvolt/rev2-Labtool"/>
+  </appSettings>
+</configuration>

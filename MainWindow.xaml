@@ -1,0 +1,92 @@
+﻿<Window x:Class="rev2_Labtool_Framework_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:rev2_Labtool_Framework_"
+        mc:Ignorable="d"
+        Title="rev2-Labtool (v0.2.0)" Height="auto" Width="auto"
+		Loaded="Window_Loaded" Closed="Window_Closed"
+		WindowStartupLocation="CenterScreen" Topmost="True"
+		SizeToContent="WidthAndHeight"
+		MinWidth="200"
+		ResizeMode="CanMinimize"
+		>
+
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="Github" Click="MenuItem_Click"></MenuItem>
+		</Menu>
+
+		<Grid Margin="0,0,0,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<Expander Grid.Row="0"  Name="myExpander" HorizontalAlignment="Center" Header="Info" ExpandDirection="Down" IsExpanded="True" Width="auto" Margin="10,0,10,10">
+
+				<GroupBox Margin="10,10,10,10">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="2*" />
+							<ColumnDefinition Width="1*" />
+							<ColumnDefinition Width="2*" />
+						</Grid.ColumnDefinitions>
+
+						<Label x:Name="p1CharLabel"		Grid.Column="0" Content="Character"		HorizontalAlignment="Right" Margin="0,0,0,0"	VerticalAlignment="Top" FontWeight="SemiBold"/>
+						<Label x:Name="p1DefModifLabel" Grid.Column="0" Content="[x1.00]"		HorizontalAlignment="Right" Margin="0,30,80,0"	VerticalAlignment="Top"/>
+						<Label x:Name="p1GutsLabel"		Grid.Column="0" Content="(x1.00)"		HorizontalAlignment="Right" Margin="0,30,40,0"	VerticalAlignment="Top"/>
+						<Label x:Name="p1HPLabel"		Grid.Column="0" Content="420"			HorizontalAlignment="Right" Margin="0,30,0,0"	VerticalAlignment="Top"/>
+						<Label x:Name="p1MeterLabel"	Grid.Column="0" Content="100"			HorizontalAlignment="Right" Margin="0,55,0,0"	VerticalAlignment="Top"/>
+						<Label x:Name="p1RISCLabel"		Grid.Column="0" Content="128"			HorizontalAlignment="Right" Margin="0,80,0,0"	VerticalAlignment="Top"/>
+						<Label x:Name="p1DizzyLabel"	Grid.Column="0" Content="0/dizzy"		HorizontalAlignment="Right" Margin="0,105,0,0"	VerticalAlignment="Top"/>
+
+						<Label x:Name="HPLabel"			Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="HP"		HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="47"/>
+						<Label x:Name="MeterLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Meter"	HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Width="47"/>
+						<Label x:Name="RISCLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="RISC"	HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" Width="47"/>
+						<Label x:Name="DizzyLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Dizzy"	HorizontalAlignment="Center" Margin="0,105,0,0" VerticalAlignment="Top" Width="47"/>
+
+						<Label x:Name="p2CharLabel"		Grid.Column="2" Content="Character" HorizontalAlignment="Left"	Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
+						<Label x:Name="p2HPLabel"		Grid.Column="2" Content="420"		HorizontalAlignment="Left"	Margin="0,30,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2GutsLabel"		Grid.Column="2" Content="(x1.00)"	HorizontalAlignment="Left"	Margin="40,30,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2DefModifLabel" Grid.Column="2" Content="[x1.00]"	HorizontalAlignment="Left"	Margin="80,30,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2MeterLabel"	Grid.Column="2" Content="100"		HorizontalAlignment="Left"	Margin="0,55,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2RISCLabel"		Grid.Column="2" Content="128"		HorizontalAlignment="Left"	Margin="0,80,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2DizzyLabel"	Grid.Column="2" Content="0/dizzy"	HorizontalAlignment="Left"	Margin="0,105,0,0" VerticalAlignment="Top"/>
+						<!--
+					<Label x:Name="xposLabel"		Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="x pos" HorizontalAlignment="Left" Margin="153,126,0,-1" VerticalAlignment="Top" RenderTransformOrigin="-0.087,0.538" Width="47"/>
+					<Label x:Name="p1PosLabel"		Content="-1515" HorizontalAlignment="Right" Margin="0,126,214,-1" VerticalAlignment="Top" RenderTransformOrigin="-0.087,0.538"/>
+					<Label x:Name="p2PosLabel"		Content="1515" HorizontalAlignment="Left" Margin="208,126,0,-1" VerticalAlignment="Top"/>
+			<Expander Name="myExpander" HorizontalAlignment="Left" Header="Info" ExpandDirection="Down" IsExpanded="True">
+			</Expander>
+					-->
+					</Grid>
+				</GroupBox>
+			</Expander>
+
+			<Expander Grid.Row="1"  Name="my2Expander" HorizontalAlignment="Center" Header="Framedata" ExpandDirection="Down" IsExpanded="True" Width="auto" Margin="10,0,10,10">
+				<GroupBox Height="auto" >
+					<Grid Margin="0,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="1.5*" />
+							<ColumnDefinition Width="3*" />
+							<ColumnDefinition Width="1.5*" />
+						</Grid.ColumnDefinitions>
+
+						<Label x:Name="frameAdvantageLabel" Grid.Column="1" Content="P1 frame advantage: " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0"/>
+						<Label x:Name="fa1Label"			Grid.Column="1" Content="F" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top"/>
+						<Button x:Name="clearButton"		Grid.Column="1" Content="Clear" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="45,90,45,0" Click="clearGapsString"/>
+
+						<Label x:Name="gapsLabel"			Grid.Column="0" Content="Gaps:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" />
+						<TextBox x:Name="gaps1Textblock"	Grid.Column="0" Text=""			HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,48,0,0" TextWrapping="Wrap" IsReadOnly="True" Height="60" Width="50"/>
+						<Label x:Name="gaps2Label"			Grid.Column="2" Content="Gaps:" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="0,10,0,0" />
+						<TextBox x:Name="gaps2Textblock"	Grid.Column="2" Text=""			HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,48,0,0" TextWrapping="Wrap" IsReadOnly="True" Height="60" Width="50" />
+					</Grid>
+				</GroupBox>
+			</Expander>
+
+
+		</Grid>
+	</DockPanel>
+</Window>
