@@ -3,8 +3,10 @@ External tool adding more features to the training mode of Guilty Gear Xrd Rev2.
 <p align="center">
 <img src="images/Labtool020.png" height="390">
 </p>
+
 ## How to use
 0. Download rev2-Labtool here: https://github.com/PCvolt/rev2-Labtool/releases/download/0.2.0/Release.Framework.0.2.0.7z
+1. Start GGxrd rev2
 2. Boot up Labtool. It is recommended to close and start it up again everytime you switch characters.
 
 ## Features
@@ -23,5 +25,5 @@ External tool adding more features to the training mode of Guilty Gear Xrd Rev2.
 - Playing as P2 swaps some info on the display.
 - Blocking animation and Preparing to block animation are the same, meaning that if you hold back in advance for blocking, the blockstring may be displayed as tight. Test your blockstrings on a dummy.
 - Attacks such as blitz or Ramlethal 5PPP have a part of their recovery animation which is cancellable but has no (found) indication of being so. To display the proper frame advantage from those attacks, cancel the recovery with walk.
-
+----
 The project migrated from .NET Core to .NET Framework for compatibility purposes. 
