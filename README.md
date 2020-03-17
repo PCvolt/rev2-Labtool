@@ -1,6 +1,8 @@
 # GGxrd rev2 Labtool
 External tool adding more features to the training mode of Guilty Gear Xrd Rev2.
-
+<p align="center">
+<img src="images/Labtool020.png" height="390">
+</p>
 ## How to use
 0. Download rev2-Labtool here: https://github.com/PCvolt/rev2-Labtool/releases/download/0.2.0/Release.Framework.0.2.0.7z
 2. Boot up Labtool. It is recommended to close and start it up again everytime you switch characters.
