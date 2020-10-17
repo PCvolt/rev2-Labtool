@@ -1,27 +1,27 @@
 # GGxrd rev2 Labtool
 External tool adding more features to the training mode of Guilty Gear Xrd Rev2.
 <p align="center">
-<img src="images/Labtool020.png" height="390">
+<img src="images/Labtool030.png" height="410">
 </p>
 ## How to use
-0. Download rev2-Labtool here: https://github.com/PCvolt/rev2-Labtool/releases/download/0.2.0/Release.Framework.0.2.0.7z
+0. Download rev2-Labtool here: https://github.com/PCvolt/rev2-Labtool/releases/download/0.3.0/rev2-labtool0.3.0.7z
+1. Start GGxrd rev2
 2. Boot up Labtool. It is recommended to close and start it up again everytime you switch characters.
 
 ## Features
-- Value displays: HP, defense modifier, meter, RISC, dizzy with thresholds
-- Frame advantage (even on Roman Cancels!)
-- Gap display for both characters(up to 30F gaps)
+- Value displays: HP, defense modifier, meter, RISC, stun with thresholds per characters, xy position
+- Frame advantage display (even on Roman Cancels!)
+- Gap display for both characters(up to 30F gaps), on block and even on hit
+- Save&Reset positions, save with keyboard "2", and reset with keyboard "1" or joypad "select"
 
 ## Upcoming features
-- Guts display
-- Positions display
-- Gap display on hit
+- Dynamic display of guts per character
+- Customizable keys and buttons for Save&Reset feature
 
 ## Known bugs
 - Crashes when changing characters, hence the recommendation.
 - If you have the wrong characters displayed, you may want to hit left then right on the training menu's selected characters so that Labtool updates.
 - Playing as P2 swaps some info on the display.
-- Blocking animation and Preparing to block animation are the same, meaning that if you hold back in advance for blocking, the blockstring may be displayed as tight. Test your blockstrings on a dummy.
 - Attacks such as blitz or Ramlethal 5PPP have a part of their recovery animation which is cancellable but has no (found) indication of being so. To display the proper frame advantage from those attacks, cancel the recovery with walk.
 
 The project migrated from .NET Core to .NET Framework for compatibility purposes. 

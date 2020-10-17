@@ -5,6 +5,7 @@ C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\rev2-Labtool(F
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\rev2-Labtool(Framework).pdb
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\Fasm.NET.dll
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\MemorySharp.dll
+C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\SlimDX.dll
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\Fasm.NET.xml
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\MemorySharp.xml
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\MainWindow.g.cs
@@ -20,6 +21,3 @@ C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(F
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).csproj.CopyComplete
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).exe
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).pdb
-C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\SlimDX.dll
-C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\rev2-Labtool(Framework).exe.CodeAnalysisLog.xml
-C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\rev2-Labtool(Framework).exe.lastcodeanalysissucceeded

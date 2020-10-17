@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:rev2_Labtool_Framework_"
         mc:Ignorable="d"
-        Title="rev2-Labtool (v0.3.0)" Height="auto" Width="auto"
+        Title="rev2-Labtool (v0.3.0)" Height="468" Width="auto"
 		Loaded="Window_Loaded" Closed="Window_Closed"
 		WindowStartupLocation="Manual" Topmost="True"
 		SizeToContent="WidthAndHeight"
@@ -43,7 +43,7 @@
 						<Label x:Name="p1StunLabel"		Grid.Column="0" Content="0/stun"		HorizontalAlignment="Right" Margin="0,105,0,0"	VerticalAlignment="Top"/>
 						<Label x:Name="p1xPosLabel"		Grid.Column="0" Content="x: -1515"		HorizontalAlignment="Right" Margin="0,130,50,0" VerticalAlignment="Top"/>
 						<Label x:Name="p1yPosLabel"		Grid.Column="0" Content="y: 1515"		HorizontalAlignment="Right" Margin="0,130,0,0" VerticalAlignment="Top"/>
-						
+
 						<Label x:Name="HPLabel"			Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="HP"		HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="47"/>
 						<Label x:Name="MeterLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Meter"	HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Width="47"/>
 						<Label x:Name="RISCLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="RISC"	HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" Width="47"/>
@@ -65,7 +65,7 @@
 				</GroupBox>
 			</Expander>
 
-			<Expander Grid.Row="1"  Name="my2Expander" HorizontalAlignment="Center" Header="Framedata" ExpandDirection="Down" IsExpanded="True" Width="auto" Margin="10,0,10,10">
+			<Expander Grid.Row="1"  Name="my2Expander" HorizontalAlignment="Center" Header="Framedata" ExpandDirection="Down" IsExpanded="True" Width="auto" Margin="58,32,57,10">
 				<GroupBox Height="auto" >
 					<Grid Margin="0,0,0,0">
 						<Grid.ColumnDefinitions>
@@ -85,6 +85,8 @@
 					</Grid>
 				</GroupBox>
 			</Expander>
+			
+			<CheckBox x:Name="checkbox"  Content="Save/Reset keys" HorizontalAlignment="Center" Margin="123,0,124,0" Grid.Row="1" VerticalAlignment="Top" Click="MenuItem_Click_1"/>
 
 
 		</Grid>

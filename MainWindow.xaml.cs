@@ -3,8 +3,7 @@ using System.Configuration;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
-
-
+using System.Windows.Controls;
 
 namespace rev2_Labtool_Framework_
 {
@@ -27,7 +26,7 @@ namespace rev2_Labtool_Framework_
 
 
 		private readonly string _githubPage = ConfigurationManager.AppSettings.Get("GithubPage");
-		private Labtool labtool;
+		private Labtool _labtool;
 
 		#region FormHandling
 		public MainWindow()
@@ -37,7 +36,7 @@ namespace rev2_Labtool_Framework_
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			labtool = new Labtool();
+			_labtool = new Labtool();
 
 			try
 			{
@@ -53,6 +52,7 @@ namespace rev2_Labtool_Framework_
 			Thread t1 = new Thread(refreshInfo);
 			t1.IsBackground = true;
 			t1.Start();
+			checkbox.IsChecked = true;
 			SetForegroundWindow(MemoryAccessor.process.MainWindowHandle);
 		}
 
@@ -88,57 +88,62 @@ namespace rev2_Labtool_Framework_
 		{
 			while (true)
 			{
-				labtool.macroButtons();
-				labtool.updateFrameInfo();
+				_labtool.macroButtons();
+				_labtool.updateFrameInfo();
 
 
-				if (labtool.f.updateFA)
+				if (_labtool.f.updateFA)
 				{
-					updateLabel(this.fa1Label, labtool.f.frameAdvantage + "F");
-					labtool.f.updateFA = false;
+					updateLabel(this.fa1Label, _labtool.f.frameAdvantage + "F");
+					_labtool.f.updateFA = false;
 				}
 
-				if (labtool.g1.updateGap)
+				if (_labtool.g1.updateGap)
 				{
 					Dispatcher.BeginInvoke(new Action(() =>
 					{
 						string concat = this.gaps1Textblock.Text;
-						this.gaps1Textblock.Text = concat.Insert(0, labtool.g1.rememberGap.ToString() + "F" + Environment.NewLine);
+						this.gaps1Textblock.Text = concat.Insert(0, _labtool.g1.rememberGap.ToString() + "F" + Environment.NewLine);
 					}));
-					labtool.g1.updateGap = false;
+					_labtool.g1.updateGap = false;
 				}
 
-				if (labtool.g2.updateGap)
+				if (_labtool.g2.updateGap)
 				{
 					Dispatcher.BeginInvoke(new Action(() =>
 					{
 						string concat = this.gaps2Textblock.Text;
-						this.gaps2Textblock.Text = concat.Insert(0, labtool.g2.rememberGap.ToString() + "F" + Environment.NewLine);
+						this.gaps2Textblock.Text = concat.Insert(0, _labtool.g2.rememberGap.ToString() + "F" + Environment.NewLine);
 					}));
-					labtool.g2.updateGap = false;
+					_labtool.g2.updateGap = false;
 				}
 
-				updateLabel(this.p1HPLabel, "" + labtool.player1._HP);
-				updateLabel(this.p2HPLabel, "" + labtool.player2._HP);
-				updateLabel(this.p1MeterLabel, "" + labtool.player1._meter / 100.0);
-				updateLabel(this.p2MeterLabel, "" + labtool.player2._meter / 100.0);
-				updateLabel(this.p1RISCLabel, "" + labtool.player1._RISC / 100.0);
-				updateLabel(this.p2RISCLabel, "" + labtool.player2._RISC / 100.0);
-				updateLabel(this.p1xPosLabel, "x: " + labtool.player1._pos.x / 1000);
-				updateLabel(this.p1yPosLabel, "y: " + labtool.player1._pos.y / 1000);
-				updateLabel(this.p2xPosLabel, "x: " + labtool.player2._pos.x / 1000);
-				updateLabel(this.p2yPosLabel, "y: " + labtool.player2._pos.y / 1000);
+				updateLabel(this.p1HPLabel, "" + _labtool._player1._HP);
+				updateLabel(this.p2HPLabel, "" + _labtool._player2._HP);
+				updateLabel(this.p1MeterLabel, "" + _labtool._player1._meter / 100.0);
+				updateLabel(this.p2MeterLabel, "" + _labtool._player2._meter / 100.0);
+				updateLabel(this.p1RISCLabel, "" + _labtool._player1._RISC / 100.0);
+				updateLabel(this.p2RISCLabel, "" + _labtool._player2._RISC / 100.0);
+				updateLabel(this.p1xPosLabel, "x: " + _labtool._player1._pos.x / 1000);
+				updateLabel(this.p1yPosLabel, "y: " + _labtool._player1._pos.y / 1000);
+				updateLabel(this.p2xPosLabel, "x: " + _labtool._player2._pos.x / 1000);
+				updateLabel(this.p2yPosLabel, "y: " + _labtool._player2._pos.y / 1000);
 
 				// Player is always #1, dummy is always #2, how to find which character is at which side ?
-				updateLabel(this.p1CharLabel, "(Player)" + Player.charactersList[labtool.player1.characterIndex]);
-				updateLabel(this.p2CharLabel, Player.charactersList[labtool.player2.characterIndex]);
-				updateLabel(this.p1DefModifLabel, "[x" + Player.defmodifList[labtool.player1.characterIndex] + "]");
-				updateLabel(this.p2DefModifLabel, "[x" + Player.defmodifList[labtool.player2.characterIndex] + "]");
-				updateLabel(this.p1StunLabel, "" + labtool.player1._stun + "/" + Player.stunList[labtool.player1.characterIndex]);
-				updateLabel(this.p2StunLabel, "" + labtool.player2._stun + "/" + Player.stunList[labtool.player2.characterIndex]);
+				updateLabel(this.p1CharLabel, "(Player)" + Player.charactersList[_labtool._player1.characterIndex]);
+				updateLabel(this.p2CharLabel, Player.charactersList[_labtool._player2.characterIndex]);
+				updateLabel(this.p1DefModifLabel, "[x" + Player.defmodifList[_labtool._player1.characterIndex] + "]");
+				updateLabel(this.p2DefModifLabel, "[x" + Player.defmodifList[_labtool._player2.characterIndex] + "]");
+				updateLabel(this.p1StunLabel, "" + _labtool._player1._stun + "/" + Player.stunList[_labtool._player1.characterIndex]);
+				updateLabel(this.p2StunLabel, "" + _labtool._player2._stun + "/" + Player.stunList[_labtool._player2.characterIndex]);
 				updateLabel(this.p1GutsLabel, "(x guts)");
 				updateLabel(this.p2GutsLabel, "(x guts)");
 			}
+		}
+
+		private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+		{
+			Labtool.processKeys = !Labtool.processKeys;
 		}
 	}
 }
