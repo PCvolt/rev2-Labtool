@@ -66,24 +66,36 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rev2-Labtool(Framework).exe" size="22968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rev2-Labtool(Framework).exe" size="27064">
       <assemblyIdentity name="rev2-Labtool(Framework)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MpWuYi5g2/A46+LwZgq9Kq3QBEtY1kZDrNGYepmpoac=</dsig:DigestValue>
+        <dsig:DigestValue>X+HXxu2Yz4ZPskzEa24MDhtWZSQtzwbkOGIQKl4MYKI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="rev2-Labtool(Framework).exe.config" size="934">
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SlimDX.dll" size="3383808">
+      <assemblyIdentity name="SlimDX" version="4.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>8j7CCursFJupY9H7A68+oVhczfGsIH8xU2GoDOqtzAU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="rev2-Labtool(Framework).exe.config" size="1116">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>XW6esZR1/Zm8b6uCJq0mvsvSmaWEZXNQ8sRj+vgpOhQ=</dsig:DigestValue>
+      <dsig:DigestValue>WMO9nIhl2bVpNpNaHZXY/RdsVMaJlrDY8p5T/JVPwzc=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Threading;
 using System.Windows;
+using System.Runtime.InteropServices;
+
 
 
 namespace rev2_Labtool_Framework_
@@ -9,8 +11,21 @@ namespace rev2_Labtool_Framework_
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
+	/// 
+	public struct Rect
+	{
+		public int Left { get; set; }
+		public int Top { get; set; }
+		public int Right { get; set; }
+		public int Bottom { get; set; }
+	}
+
 	public partial class MainWindow : Window
 	{
+		[DllImport("user32.dll")]
+		private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+
 		private readonly string _githubPage = ConfigurationManager.AppSettings.Get("GithubPage");
 		private Labtool labtool;
 
@@ -18,10 +33,11 @@ namespace rev2_Labtool_Framework_
 		{
 			InitializeComponent();
 		}
+
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			labtool = new Labtool();
-
+			
 			try
 			{
 				labtool.AttachToProcess();
@@ -36,6 +52,7 @@ namespace rev2_Labtool_Framework_
 			Thread t1 = new Thread(refreshInfo);
 			t1.IsBackground = true;
 			t1.Start();
+			SetForegroundWindow(labtool.process.MainWindowHandle);
 		}
 
 		private void Window_Closed(object sender, EventArgs e)
@@ -53,47 +70,18 @@ namespace rev2_Labtool_Framework_
 			}));
 		}
 
-		public void updateProgressBar(System.Windows.Controls.ProgressBar bar, int value)
-		{
-			if (CheckAccess())
-				bar.Value = value;
-			else
-			{
-				Dispatcher.Invoke(new Action(() => bar.Value = value), null);
-			}
-		}
-
 		private void refreshInfo()
 		{
 			while (true)
 			{
-				Thread.Sleep(15);
-
+				labtool.macroButtons();
 				labtool.updateFrameInfo();
-				updateLabel(this.p1HPLabel, "" + labtool.player1.HP);
-				updateLabel(this.p2HPLabel, "" + labtool.player2.HP);
-				updateLabel(this.p1MeterLabel, "" + labtool.player1.meter / 100.0);
-				updateLabel(this.p2MeterLabel, "" + labtool.player2.meter / 100.0);
-				updateLabel(this.p1RISCLabel, "" + labtool.player1.RISC / 100.0);
-				updateLabel(this.p2RISCLabel, "" + labtool.player2.RISC / 100.0);
-				//updateLabel(this.p1PosLabel, "" + labtool.player1.xPos / 1000);
-				//updateLabel(this.p2PosLabel, "" + labtool.player2.xPos / 1000);
-
-				// Player is always #1, dummy is always #2, how to find which character is at which side ?
-				updateLabel(this.p1CharLabel, "(Player)" + Player.charactersList[labtool.player1.characterIndex]);
-				updateLabel(this.p2CharLabel, Player.charactersList[labtool.player2.characterIndex]);
-				updateLabel(this.p1DefModifLabel, "[x" + Player.defmodifList[labtool.player1.characterIndex] + "]");
-				updateLabel(this.p2DefModifLabel, "[x" + Player.defmodifList[labtool.player2.characterIndex] + "]");
-				updateLabel(this.p1DizzyLabel, "" + labtool.player1.dizzy + "/" + Player.dizzyList[labtool.player1.characterIndex]);
-				updateLabel(this.p2DizzyLabel, "" + labtool.player2.dizzy + "/" + Player.dizzyList[labtool.player2.characterIndex]);
-				updateLabel(this.p1GutsLabel, "(x guts)");
-				updateLabel(this.p2GutsLabel, "(x guts)");
-
 
 
 				if (labtool.f1.updateFA)
 				{
 					updateLabel(this.fa1Label, labtool.f1.frameAdvantage + "F");
+					labtool.f1.updateFA = false;
 				}
 
 				if (labtool.f1.updateGap)
@@ -115,6 +103,27 @@ namespace rev2_Labtool_Framework_
 					}));
 					labtool.f2.updateGap = false;
 				}
+			
+				updateLabel(this.p1HPLabel, "" + labtool.player1.HP);
+				updateLabel(this.p2HPLabel, "" + labtool.player2.HP);
+				updateLabel(this.p1MeterLabel, "" + labtool.player1.meter / 100.0);
+				updateLabel(this.p2MeterLabel, "" + labtool.player2.meter / 100.0);
+				updateLabel(this.p1RISCLabel, "" + labtool.player1.RISC / 100.0);
+				updateLabel(this.p2RISCLabel, "" + labtool.player2.RISC / 100.0);
+				updateLabel(this.p1xPosLabel, "x: " + labtool.player1.pos.x / 1000);
+				updateLabel(this.p1yPosLabel, "y: " + labtool.player1.pos.y / 1000);
+				updateLabel(this.p2xPosLabel, "x: " + labtool.player2.pos.x / 1000);
+				updateLabel(this.p2yPosLabel, "y: " + labtool.player2.pos.y / 1000);
+
+				// Player is always #1, dummy is always #2, how to find which character is at which side ?
+				updateLabel(this.p1CharLabel, "(Player)" + Player.charactersList[labtool.player1.characterIndex]);
+				updateLabel(this.p2CharLabel, Player.charactersList[labtool.player2.characterIndex]);
+				updateLabel(this.p1DefModifLabel, "[x" + Player.defmodifList[labtool.player1.characterIndex] + "]");
+				updateLabel(this.p2DefModifLabel, "[x" + Player.defmodifList[labtool.player2.characterIndex] + "]");
+				updateLabel(this.p1StunLabel, "" + labtool.player1.stun + "/" + Player.stunList[labtool.player1.characterIndex]);
+				updateLabel(this.p2StunLabel, "" + labtool.player2.stun + "/" + Player.stunList[labtool.player2.characterIndex]);
+				updateLabel(this.p1GutsLabel, "(x guts)");
+				updateLabel(this.p2GutsLabel, "(x guts)");
 			}
 		}
 

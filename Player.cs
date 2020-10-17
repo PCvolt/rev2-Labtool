@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using System.Configuration;
 
+public struct Position
+{
+	public int x;
+	public int y;
+}
 
 class Player
 {
 	public static int nbOfPlayers = 0;
 	public IntPtr playerPtr;
 	public int playerNumber;
-	public int characterIndex;
+	
 
 	public string currentAnim;
 	public int HP;
 	public int meter;
 	public int RISC;
-	public int dizzy;
+	public int stun;
+	public bool _isBlocking = false;
+	public bool _isHit = false;
 
-	public float xPos;
+	public Position pos;
 
 	public Player()
 	{
@@ -24,8 +31,9 @@ class Player
 		this.playerNumber = nbOfPlayers;
 	}
 
+	public int characterIndex;
 	static public List<string> charactersList = new List<string>() { "Sol", "Ky", "May", "Millia", "Zato=1", "Potemkin", "Chipp", "Faust", "Axl", "Venom", "Slayer", "I-no", "Bedman", "Ramlethal", "Sin", "Elphelt", "Leo", "Johnny", "Jack-O'", "Jam", "Haehyun", "Raven", "Dizzy", "Baiken", "Answer" };
-	static public List<int> dizzyList = new List<int>() { 6000, 6000, 7000, 5500, 6000, 8000, 5000, 6500, 6000, 6000, 7000, 6000, 6000, 6000, 6000, 6000, 7000, 6000, 6000, 6500, 7000, 5500, 5000, 5500, 5500 };
+	static public List<int> stunList = new List<int>() { 6000, 6000, 7000, 5500, 6000, 8000, 5000, 6500, 6000, 6000, 7000, 5500, 6000, 6000, 6000, 6000, 7000, 7000, 6000, 6500, 7000, 5500, 5000, 5500, 5500 };
 	static public List<float> defmodifList = new List<float>() { (float)1.00, (float)1.03, (float)1.06, (float)1.21, (float)1.09, (float)0.93, (float)1.30, (float)1.00, (float)1.06, (float)1.03, (float)0.96, (float)1.06, (float)0.98, (float)1.06, (float)1.04, (float)1.03, (float)1.00, (float)1.00, (float)1.03, (float)1.06, (float)0.96, (float)1.10, (float)1.06, (float)1.12, (float)1.03 };
 	// 90%		76% 	60% 	50% 	40% 	Answer, Bedman, Elphelt, Faust, Zato 
 	// 87%		72% 	58% 	48% 	40% 	Axl, I-No, Ramlethal, Sin, Slayer, Sol, Venom, Dizzy 
@@ -35,7 +43,6 @@ class Player
 	// 75% 		60% 	48% 	40% 	36% 	Raven
 
 	static private HashSet<string> idleAnimHash;
-	static private HashSet<string> blockingAnimHash;
 	static string[] idleAnimArray =
 	{
 		"CmnActStand",
@@ -46,33 +53,18 @@ class Player
 		"CmnActFWalk",
 		"CmnActBWalk",
 
+		"Semuke", //Leo backstance
+
 		"CmnActCrouchGuardEnd",
 		"CmnActMidGuardEnd",
 		"CmnActHighGuardEnd",
 		"CmnActAirGuardEnd",
-	}; // Preparing to block and actually blocking are the same animations...
-
-	static string[] blockingAnimArray =
-	{
-		"CmnActCrouchGuardLoop",
-		"CmnActMidGuardLoop",
-		"CmnActHighGuardLoop",
-		"CmnActAirGuardLoop"
 	};
-
-	static public List<string> gutsRating0 = new List<string>() { };
-	static public List<string> gutsRating1 = new List<string>() { };
-	static public List<string> gutsRating2 = new List<string>() { };
-	static public List<string> gutsRating3 = new List<string>() { };
-	static public List<string> gutsRating4 = new List<string>() { };
-	static public List<string> gutsRating5 = new List<string>() { };
-
 
 
 	public static void setHashSets()
 	{
 		idleAnimHash = new HashSet<string>(idleAnimArray);
-		blockingAnimHash = new HashSet<string>(blockingAnimArray);
 	}
 
 	public void assignPlayerPtr(string playerPointerNumber)
@@ -81,7 +73,7 @@ class Player
 	}
 
 
-	public bool IsIdle() //TODO: preparing to block animations return true instead of false
+	public bool IsCompletelyIdle()
 	{
 		if (idleAnimHash.Contains(currentAnim))
 			return true;
@@ -90,8 +82,16 @@ class Player
 
 	public bool IsBlocking()
 	{
-		if (blockingAnimHash.Contains(currentAnim))
-			return true;
-		return false;
+		return this._isBlocking;
+	}
+
+	public bool IsHit()
+	{
+		return this._isHit;
+	}
+
+	public bool IsUnderAttack()
+	{
+		return IsBlocking() || IsHit();
 	}
 }

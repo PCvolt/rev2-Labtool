@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:rev2_Labtool_Framework_"
         mc:Ignorable="d"
-        Title="rev2-Labtool (v0.2.0)" Height="auto" Width="auto"
+        Title="rev2-Labtool (v0.3.0)" Height="auto" Width="auto"
 		Loaded="Window_Loaded" Closed="Window_Closed"
-		WindowStartupLocation="CenterScreen" Topmost="True"
+		WindowStartupLocation="Manual" Topmost="True"
 		SizeToContent="WidthAndHeight"
 		MinWidth="200"
 		ResizeMode="CanMinimize"
@@ -26,7 +26,7 @@
 
 			<Expander Grid.Row="0"  Name="myExpander" HorizontalAlignment="Center" Header="Info" ExpandDirection="Down" IsExpanded="True" Width="auto" Margin="10,0,10,10">
 
-				<GroupBox Margin="10,10,10,10">
+				<GroupBox Margin="10,10,10,10" Height="164">
 					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="2*" />
@@ -40,12 +40,15 @@
 						<Label x:Name="p1HPLabel"		Grid.Column="0" Content="420"			HorizontalAlignment="Right" Margin="0,30,0,0"	VerticalAlignment="Top"/>
 						<Label x:Name="p1MeterLabel"	Grid.Column="0" Content="100"			HorizontalAlignment="Right" Margin="0,55,0,0"	VerticalAlignment="Top"/>
 						<Label x:Name="p1RISCLabel"		Grid.Column="0" Content="128"			HorizontalAlignment="Right" Margin="0,80,0,0"	VerticalAlignment="Top"/>
-						<Label x:Name="p1DizzyLabel"	Grid.Column="0" Content="0/dizzy"		HorizontalAlignment="Right" Margin="0,105,0,0"	VerticalAlignment="Top"/>
-
+						<Label x:Name="p1StunLabel"		Grid.Column="0" Content="0/stun"		HorizontalAlignment="Right" Margin="0,105,0,0"	VerticalAlignment="Top"/>
+						<Label x:Name="p1xPosLabel"		Grid.Column="0" Content="x: -1515"		HorizontalAlignment="Right" Margin="0,130,50,0" VerticalAlignment="Top"/>
+						<Label x:Name="p1yPosLabel"		Grid.Column="0" Content="y: 1515"		HorizontalAlignment="Right" Margin="0,130,0,0" VerticalAlignment="Top"/>
+						
 						<Label x:Name="HPLabel"			Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="HP"		HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="47"/>
 						<Label x:Name="MeterLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Meter"	HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Width="47"/>
 						<Label x:Name="RISCLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="RISC"	HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" Width="47"/>
-						<Label x:Name="DizzyLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Dizzy"	HorizontalAlignment="Center" Margin="0,105,0,0" VerticalAlignment="Top" Width="47"/>
+						<Label x:Name="DizzyLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Stun"	HorizontalAlignment="Center" Margin="0,105,0,0" VerticalAlignment="Top" Width="47"/>
+						<Label x:Name="posLabel"		Grid.Column="1" Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="Pos"	HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Width="47"/>
 
 						<Label x:Name="p2CharLabel"		Grid.Column="2" Content="Character" HorizontalAlignment="Left"	Margin="0,0,0,0" VerticalAlignment="Top" FontWeight="SemiBold"/>
 						<Label x:Name="p2HPLabel"		Grid.Column="2" Content="420"		HorizontalAlignment="Left"	Margin="0,30,0,0" VerticalAlignment="Top"/>
@@ -53,14 +56,11 @@
 						<Label x:Name="p2DefModifLabel" Grid.Column="2" Content="[x1.00]"	HorizontalAlignment="Left"	Margin="80,30,0,0" VerticalAlignment="Top"/>
 						<Label x:Name="p2MeterLabel"	Grid.Column="2" Content="100"		HorizontalAlignment="Left"	Margin="0,55,0,0" VerticalAlignment="Top"/>
 						<Label x:Name="p2RISCLabel"		Grid.Column="2" Content="128"		HorizontalAlignment="Left"	Margin="0,80,0,0" VerticalAlignment="Top"/>
-						<Label x:Name="p2DizzyLabel"	Grid.Column="2" Content="0/dizzy"	HorizontalAlignment="Left"	Margin="0,105,0,0" VerticalAlignment="Top"/>
-						<!--
-					<Label x:Name="xposLabel"		Background="#FFE0E0E0" HorizontalContentAlignment="Center" Content="x pos" HorizontalAlignment="Left" Margin="153,126,0,-1" VerticalAlignment="Top" RenderTransformOrigin="-0.087,0.538" Width="47"/>
-					<Label x:Name="p1PosLabel"		Content="-1515" HorizontalAlignment="Right" Margin="0,126,214,-1" VerticalAlignment="Top" RenderTransformOrigin="-0.087,0.538"/>
-					<Label x:Name="p2PosLabel"		Content="1515" HorizontalAlignment="Left" Margin="208,126,0,-1" VerticalAlignment="Top"/>
-			<Expander Name="myExpander" HorizontalAlignment="Left" Header="Info" ExpandDirection="Down" IsExpanded="True">
-			</Expander>
-					-->
+						<Label x:Name="p2StunLabel"		Grid.Column="2" Content="0/stun"	HorizontalAlignment="Left"	Margin="0,105,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2xPosLabel"		Grid.Column="2" Content="x: 1515"	HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top"/>
+						<Label x:Name="p2yPosLabel"		Grid.Column="2" Content="y: 1515"	HorizontalAlignment="Left" Margin="50,130,0,0" VerticalAlignment="Top"/>
+
+
 					</Grid>
 				</GroupBox>
 			</Expander>

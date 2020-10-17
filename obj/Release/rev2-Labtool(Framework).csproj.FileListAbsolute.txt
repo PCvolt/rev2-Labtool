@@ -21,3 +21,4 @@ C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(F
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).csproj.CopyComplete
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).exe
 C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).pdb
+C:\Users\PC_volt\source\repos\rev2-Labtool(Framework)\bin\Release\SlimDX.dll
