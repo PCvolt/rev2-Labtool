@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rev2-Labtool(Framework).exe" size="27064">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rev2-Labtool(Framework).exe" size="27576">
       <assemblyIdentity name="rev2-Labtool(Framework)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X+HXxu2Yz4ZPskzEa24MDhtWZSQtzwbkOGIQKl4MYKI=</dsig:DigestValue>
+        <dsig:DigestValue>KK9DpYG+p7kzGCw4ydeT+E8/VTX99doNQuQJWLMGN/E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

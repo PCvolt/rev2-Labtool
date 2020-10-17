@@ -10,25 +10,25 @@ public struct Position
 
 class Player
 {
-	public static int nbOfPlayers = 0;
-	public IntPtr playerPtr;
-	public int playerNumber;
-	
+	public static int _nbOfPlayers = 0;
+	public IntPtr _playerPtr;
+	public int _playerNumber;
 
-	public string currentAnim;
-	public int HP;
-	public int meter;
-	public int RISC;
-	public int stun;
+
+	public string _currentAnim;
+	public int _HP;
+	public int _meter;
+	public int _RISC;
+	public int _stun;
 	public bool _isBlocking = false;
 	public bool _isHit = false;
 
-	public Position pos;
+	public Position _pos;
 
 	public Player()
 	{
-		++nbOfPlayers;
-		this.playerNumber = nbOfPlayers;
+		++_nbOfPlayers;
+		_playerNumber = _nbOfPlayers;
 	}
 
 	public int characterIndex;
@@ -69,25 +69,25 @@ class Player
 
 	public void assignPlayerPtr(string playerPointerNumber)
 	{
-		this.playerPtr = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get(playerPointerNumber), 16));
+		_playerPtr = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get(playerPointerNumber), 16));
 	}
 
 
 	public bool IsCompletelyIdle()
 	{
-		if (idleAnimHash.Contains(currentAnim))
+		if (idleAnimHash.Contains(_currentAnim))
 			return true;
 		return false;
 	}
 
 	public bool IsBlocking()
 	{
-		return this._isBlocking;
+		return _isBlocking;
 	}
 
 	public bool IsHit()
 	{
-		return this._isHit;
+		return _isHit;
 	}
 
 	public bool IsUnderAttack()

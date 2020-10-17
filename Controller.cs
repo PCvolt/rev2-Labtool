@@ -1,31 +1,29 @@
-﻿using System;
+﻿using SlimDX.DirectInput;
 using System.Collections.Generic;
-using SlimDX.DirectInput;
-using SlimDX.XInput;
 
 class Controller
 {
-	DirectInput joystick = new DirectInput();
-	public JoystickState state = new JoystickState();
-	public Joystick[] sticks;
-	public bool[] pressedButtons;
+	private static DirectInput _joystick = new DirectInput();
+	private static JoystickState _state = new JoystickState();
+	private static Joystick[] _sticks;
+	public bool[] _pressedButtons;
 
 	public Controller()
 	{
 		getSticks();
 	}
 
-	public void getSticks()
+	public static void getSticks()
 	{
 		List<Joystick> sticks = new List<Joystick>();
-		foreach (DeviceInstance device in joystick.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
+		foreach (DeviceInstance device in _joystick.GetDevices(DeviceClass.GameController, DeviceEnumerationFlags.AttachedOnly))
 		{
 			try
 			{
-				Joystick stick = new Joystick(joystick, device.InstanceGuid);
+				Joystick stick = new Joystick(_joystick, device.InstanceGuid);
 				stick.Acquire();
 
-				foreach(DeviceObjectInstance deviceObject in stick.GetObjects())
+				foreach (DeviceObjectInstance deviceObject in stick.GetObjects())
 				{
 					if ((deviceObject.ObjectType & ObjectDeviceType.Axis) != 0)
 						stick.GetObjectPropertiesById((int)deviceObject.ObjectType).SetRange(-100, 100);
@@ -33,17 +31,17 @@ class Controller
 
 				sticks.Add(stick);
 			}
-			catch(DirectInputException)
+			catch (DirectInputException)
 			{
 			}
 		}
-		this.sticks = sticks.ToArray();
+		_sticks = sticks.ToArray();
 	}
 
 	public void GetState()
 	{
-		state = sticks[0].GetCurrentState();
-		pressedButtons = state.GetButtons();
+		_state = _sticks[0].GetCurrentState();
+		_pressedButtons = _state.GetButtons();
 	}
 }
 
