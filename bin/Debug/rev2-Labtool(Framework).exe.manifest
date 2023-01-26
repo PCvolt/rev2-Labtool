@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="rev2-Labtool(Framework).exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="rev2-Labtool(Framework).exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="rev2-Labtool(Framework)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -66,24 +66,36 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rev2-Labtool(Framework).exe" size="18360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="rev2-Labtool(Framework).exe" size="29696">
       <assemblyIdentity name="rev2-Labtool(Framework)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7aJM1p2lk8bo18BDjTLAg407BJG4O66eFcC1doqzwqU=</dsig:DigestValue>
+        <dsig:DigestValue>I0wIppTFCTFfrEG7ChRgrydOg6r5HOiN9SehV00qrlI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="rev2-Labtool(Framework).exe.config" size="752">
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SlimDX.dll" size="3383808">
+      <assemblyIdentity name="SlimDX" version="4.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>8j7CCursFJupY9H7A68+oVhczfGsIH8xU2GoDOqtzAU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="rev2-Labtool(Framework).exe.config" size="1117">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ES0bv/NPUowykUTEtMwBLC4Fw8FJNb4v5MbHULaBwAg=</dsig:DigestValue>
+      <dsig:DigestValue>9bR18872DNpEUgB5YhZyrCA0jE4Bj4ix5Z4tUVZTr/U=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -52,7 +52,7 @@ namespace rev2_Labtool_Framework_
 			Thread t1 = new Thread(refreshInfo);
 			t1.IsBackground = true;
 			t1.Start();
-			checkbox.IsChecked = true;
+			checkbox.IsChecked = false;
 			SetForegroundWindow(MemoryAccessor.process.MainWindowHandle);
 		}
 
