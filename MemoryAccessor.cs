@@ -41,7 +41,7 @@ class MemoryAccessor
 		_memorySharp = new MemorySharp(process);
 
 		Player.setHashSets();
-		Controller.getSticks();
+		//Controller.getSticks();
 	}
 
 	public static int ReadStaticInt(int playerNumber)

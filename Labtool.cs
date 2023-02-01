@@ -128,12 +128,11 @@ class Labtool
 	#endregion
 
 	#region InputProcessing
-	Position savedPosP1;
-	Position savedPosP2;
-	public static bool processKeys = true;
+	Position savedPosP1 = new Position(-252000,0); //P1 roundstart position
+	Position savedPosP2 = new Position(252000, 0); //P2 roundstart position
+	public static bool processKeys = false;
 	public void macroButtons()
 	{
-		_controller.GetState();
 		_keyboard.readKeys();
 
 		if (processKeys)
@@ -147,12 +146,26 @@ class Labtool
 				savedPosP2.y = _player2._pos.y;
 
 			}
-			else if (_controller._pressedButtons[6] || _keyboard._reset)
+			else if (_keyboard._reset)
 			{
 				MemoryAccessor.WriteInfoInt(ref _player1, MemoryAccessor._PositionXOffset, savedPosP1.x);
 				MemoryAccessor.WriteInfoInt(ref _player1, MemoryAccessor._PositionYOffset, savedPosP1.y);
 				MemoryAccessor.WriteInfoInt(ref _player2, MemoryAccessor._PositionXOffset, savedPosP2.x);
 				MemoryAccessor.WriteInfoInt(ref _player2, MemoryAccessor._PositionYOffset, savedPosP2.y);
+			}
+
+			else if (_controller._isStickEnabled == true)
+            {
+				_controller.GetState();
+				/*
+				if (_controller._pressedButtons[6])
+                {
+                    MemoryAccessor.WriteInfoInt(ref _player1, MemoryAccessor._PositionXOffset, savedPosP1.x);
+					MemoryAccessor.WriteInfoInt(ref _player1, MemoryAccessor._PositionYOffset, savedPosP1.y);
+					MemoryAccessor.WriteInfoInt(ref _player2, MemoryAccessor._PositionXOffset, savedPosP2.x);
+					MemoryAccessor.WriteInfoInt(ref _player2, MemoryAccessor._PositionYOffset, savedPosP2.y);
+                }
+				*/
 			}
 		}
 	}

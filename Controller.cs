@@ -7,10 +7,16 @@ class Controller
 	private static JoystickState _state = new JoystickState();
 	private static Joystick[] _sticks;
 	public bool[] _pressedButtons;
+	public bool _isStickEnabled = false;
 
 	public Controller()
 	{
 		getSticks();
+
+		if (_sticks.Length > 0)
+		{
+			_isStickEnabled = true;
+		}
 	}
 
 	public static void getSticks()
@@ -40,8 +46,11 @@ class Controller
 
 	public void GetState()
 	{
-		_state = _sticks[0].GetCurrentState();
-		_pressedButtons = _state.GetButtons();
+		if (_sticks != null)
+        {
+			_state = _sticks[0].GetCurrentState();
+			_pressedButtons = _state.GetButtons();
+        }
 	}
 }
 
