@@ -31,7 +31,6 @@ C:\git\rev2-Labtool(Framework)\bin\Release\MemorySharp.dll
 C:\git\rev2-Labtool(Framework)\bin\Release\SlimDX.dll
 C:\git\rev2-Labtool(Framework)\bin\Release\Fasm.NET.xml
 C:\git\rev2-Labtool(Framework)\bin\Release\MemorySharp.xml
-C:\git\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework).csproj.AssemblyReference.cache
 C:\git\rev2-Labtool(Framework)\obj\Release\MainWindow.g.cs
 C:\git\rev2-Labtool(Framework)\obj\Release\App.g.cs
 C:\git\rev2-Labtool(Framework)\obj\Release\rev2-Labtool(Framework)_MarkupCompile.cache

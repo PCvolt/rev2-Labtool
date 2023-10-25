@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:rev2_Labtool_Framework_"
         mc:Ignorable="d"
-        Title="rev2-Labtool (v0.4.0)" Height="468" Width="auto"
+        Title="rev2-Labtool (v0.4.1)" Height="468" Width="auto"
 		Loaded="Window_Loaded" Closed="Window_Closed"
 		WindowStartupLocation="Manual" Topmost="True"
 		SizeToContent="WidthAndHeight"
