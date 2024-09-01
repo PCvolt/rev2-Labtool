@@ -63,7 +63,7 @@ class Labtool
 			{
 				if (g.idleCount <= 30)
 				{
-					g.rememberGap = g.idleCount;
+					g.rememberGap = g.idleCount + 1;
 					g.updateGap = true;
 					g.idleCount = 0;
 				}
