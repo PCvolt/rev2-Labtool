@@ -23,6 +23,5 @@ External tool adding more features to the training mode of Guilty Gear Xrd Rev2.
 - Crashes when changing characters, hence the recommendation.
 - If you have the wrong characters displayed, you may want to hit left then right on the training menu's selected characters so that Labtool updates.
 - Playing as P2 swaps some info on the display.
-- Attacks such as blitz or Ramlethal 5PPP have a part of their recovery animation which is cancellable but has no (found) indication of being so. To display the proper frame advantage from those attacks, cancel the recovery with walk.
 
 The project migrated from .NET Core to .NET Framework for compatibility purposes. 
