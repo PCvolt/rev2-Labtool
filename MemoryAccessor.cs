@@ -26,6 +26,10 @@ class MemoryAccessor
 
 	public static readonly int _BlockstunOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("BlockstunOffset"), 16);
 	public static readonly int _HitstunOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("HitstunOffset"), 16);
+	public static readonly int _HitstopOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("HitstopOffset"), 16);
+	public static readonly int _Flags0x4d3cOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("Flags0x4d3cOffset"), 16);
+	public static readonly int _Flags0x4d48Offset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("Flags0x4d48Offset"), 16);
+	public static readonly int _ForceDisableFlagsOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("ForceDisableFlagsOffset"), 16);
 	#endregion
 
 
@@ -133,6 +137,26 @@ class MemoryAccessor
 			Dispose();
 			return 0;
 		}
+	}
+
+	public static int ReadHitstop(ref Player player)
+	{
+		return ReadInfoInt(ref player, _HitstopOffset);
+	}
+
+	public static int ReadFlags0x4d3c(ref Player player)
+	{
+		return ReadInfoInt(ref player, _Flags0x4d3cOffset);
+	}
+
+	public static int ReadFlags0x4d48(ref Player player)
+	{
+		return ReadInfoInt(ref player, _Flags0x4d48Offset);
+	}
+
+	public static int ReadForceDisableFlags(ref Player player)
+	{
+		return ReadInfoInt(ref player, _ForceDisableFlagsOffset);
 	}
 
 	public static void Dispose()

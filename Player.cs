@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -28,6 +29,10 @@ class Player
 	public int _stun;
 	public bool _isBlocking = false;
 	public bool _isHit = false;
+	public int _hitstop;
+	public int _flags0x4d3c;
+	public int _flags0x4d48;
+	public int _forceDisableFlags;
 
 	public Position _pos;
 
@@ -47,30 +52,38 @@ class Player
 	// 81% 		66% 	54% 	44% 	38% 	Johnny, Leo, May, Millia, Potemkin, Jam
 	// 78%		64% 	50% 	42% 	38% 	Baiken, Chipp 
 	// 75% 		60% 	48% 	40% 	36% 	Raven
-
-	static private HashSet<string> idleAnimHash;
-	static string[] idleAnimArray =
-	{
-		"CmnActStand",
-		"CmnActCrouch",
-		"CmnActJump",
-		"CmnActStand2Crouch",
-		"CmnActCrouch2Stand",
-		"CmnActFWalk",
-		"CmnActBWalk",
-
-		"Semuke", //Leo backstance
-
-		"CmnActCrouchGuardEnd",
-		"CmnActMidGuardEnd",
-		"CmnActHighGuardEnd",
-		"CmnActAirGuardEnd",
+	
+	private class IsIdleResponse {
+		public Player player;
+		public bool isIdle;
 	};
+	static private Dictionary<(string charName, string animName), EventHandler<IsIdleResponse>> idleAnimHash;
 
 
 	public static void setHashSets()
 	{
-		idleAnimHash = new HashSet<string>(idleAnimArray);
+		idleAnimHash = new Dictionary<(string charName, string animName), EventHandler<IsIdleResponse>>
+		{
+			{ ("Chipp", "HaritsukiKeep"), IsIdleHaritsukiKeep },
+			{ ("Faust", "Souten"), IsIdleSouten },
+			{ ("Faust", "SoutenA"), IsIdleSouten },
+			{ ("Faust", "Souten9"), IsIdleSouten },
+			{ ("Faust", "Souten44"), IsIdleSouten },
+			{ ("Faust", "Souten66"), IsIdleSouten },
+			{ ("Faust", "SoutenB"), IsIdleSouten },
+			{ ("Faust", "SoutenC"), IsIdleSouten },
+			{ ("Faust", "SoutenE"), IsIdleSouten },
+			{ ("Faust", "Souten8"), IsIdleSouten8 },
+			{ ("Axl", "DaiRensen"), IsIdleDaiRensen },
+			{ ("Elphelt", "Rifle_Start"), IsIdleRifle },
+			{ ("Elphelt", "Rifle_Reload"), IsIdleRifle },
+			{ ("Elphelt", "Rifle_Reload_Perfect"), IsIdleRifle },
+			{ ("Elphelt", "Rifle_Reload_Roman"), IsIdleRifle },
+			{ ("Leo", "Semuke"), IsIdleSemuke },
+			{ ("Jam", "NeoHochihu"), IsIdleNeoHochihu },
+			{ ("Answer", "Ami_Hold"), IsIdleAmi_Hold },
+			{ ("Answer", "Ami_Move"), IsIdleAmi_Move }
+		};
 	}
 
 	public void assignPlayerPtr(string playerPointerNumber)
@@ -81,9 +94,18 @@ class Player
 
 	public bool IsCompletelyIdle()
 	{
-		if (idleAnimHash.Contains(_currentAnim))
-			return true;
-		return false;
+		(string charName, string animName) charAndAnim = (charactersList[characterIndex], _currentAnim);
+		if (!idleAnimHash.ContainsKey(charAndAnim))
+		{
+			return (_flags0x4d3c & 0x1000) != 0;  // enableNormals
+		}
+		EventHandler<IsIdleResponse> handler = idleAnimHash[charAndAnim];
+		IsIdleResponse response = new IsIdleResponse{
+			isIdle = false,
+			player = this
+		};
+		handler(this, response);
+		return response.isIdle;
 	}
 
 	public bool IsBlocking()
@@ -99,5 +121,52 @@ class Player
 	public bool IsUnderAttack()
 	{
 		return IsBlocking() || IsHit();
+	}
+	// Chipp wall cling idle/moving up/down
+	static private void IsIdleHaritsukiKeep(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x2) != 0;  // enableWhiffCancels
+	}
+	// Faust pogo
+	static private void IsIdleSouten(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x2) != 0;  // enableWhiffCancels
+	}
+	// Faust pogo helicopter
+	static private void IsIdleSouten8(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x1) == 0;  // !enableGatlings
+	}
+	// Axl Haitaka stance
+	static private void IsIdleDaiRensen(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x2) != 0;  // enableWhiffCancels
+	}
+	// Elphelt Ms. Confille (rifle)
+	static private void IsIdleRifle(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x2) != 0  // enableWhiffCancels
+			&& (e.player._forceDisableFlags & 0x2) == 0;  // 0x2 is the force disable flag for Rifle_Fire
+	}
+	// Leo backturn idle
+	static private void IsIdleSemuke(object sender, IsIdleResponse e)
+	{
+		e.isIdle = true;
+	}
+	// Jam parry
+	static private void IsIdleNeoHochihu(object sender, IsIdleResponse e)
+	{
+		e.isIdle = false;
+	}
+	// Answer scroll cling idle
+	static private void IsIdleAmi_Hold(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x2) != 0;
+	}
+	// Answer s.D
+	static private void IsIdleAmi_Move(object sender, IsIdleResponse e)
+	{
+		e.isIdle = (e.player._flags0x4d48 & 0x2) != 0
+			&& e.player._hitstop == 0;
 	}
 }
