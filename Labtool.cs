@@ -63,7 +63,7 @@ class Labtool
 			{
 				if (g.idleCount <= 30)
 				{
-					g.rememberGap = g.idleCount;
+					g.rememberGap = g.idleCount + 1;
 					g.updateGap = true;
 					g.idleCount = 0;
 				}
@@ -100,6 +100,14 @@ class Labtool
 		_player2._isHit = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._HitstunOffset) != 0;
 		_player1._currentAnim = MemoryAccessor.ReadAnimationString(ref _player1);
 		_player2._currentAnim = MemoryAccessor.ReadAnimationString(ref _player2);
+		_player1._hitstop = MemoryAccessor.ReadHitstop(ref _player1);
+		_player2._hitstop = MemoryAccessor.ReadHitstop(ref _player2);
+		_player1._flags0x4d3c = MemoryAccessor.ReadFlags0x4d3c(ref _player1);
+		_player2._flags0x4d3c = MemoryAccessor.ReadFlags0x4d3c(ref _player2);
+		_player1._flags0x4d48 = MemoryAccessor.ReadFlags0x4d48(ref _player1);
+		_player2._flags0x4d48 = MemoryAccessor.ReadFlags0x4d48(ref _player2);
+		_player1._forceDisableFlags = MemoryAccessor.ReadForceDisableFlags(ref _player1);
+		_player2._forceDisableFlags = MemoryAccessor.ReadForceDisableFlags(ref _player2);
 
 		frameAdvantage(f, ref _player1, ref _player2);
 		gap(g1, ref _player2);
