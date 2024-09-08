@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 class Labtool
 {
@@ -84,6 +85,9 @@ class Labtool
 	{
 		do
 		{
+			timeBeginPeriod(1);
+			System.Threading.Thread.Sleep(1);
+			timeEndPeriod(1);
 			currFrame = MemoryAccessor.FrameCount();
 		}
 		while (currFrame == prevFrame);
@@ -185,6 +189,15 @@ class Labtool
 		}
 	}
 	#endregion
+	
+    #region DLL Imports
+    [DllImport("winmm.dll")]
+    private static extern int timeBeginPeriod(uint uPeriod);
+
+    [DllImport("winmm.dll")]
+    private static extern int timeEndPeriod(uint uPeriod);
+
+    #endregion
 }
 
 /*
