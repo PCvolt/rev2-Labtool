@@ -11,11 +11,15 @@ class MemoryAccessor
 	public static Process process;
 
 	#region Pointers
-	public static readonly IntPtr _frameCountOffset = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get("FrameCountOffset"), 16));
-	public static readonly IntPtr _p1CharIndex = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get("Player1CharIndex"), 16));
-	public static readonly IntPtr _p2CharIndex = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get("Player2CharIndex"), 16));
+	public static readonly IntPtr _aswEnginePtr = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get("AswEnginePtr"), 16));
 	#endregion
 	#region Offsets
+	public static readonly int _p1Offset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("Player1Offset"), 16);
+	public static readonly int _p2Offset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("Player2Offset"), 16);
+	public static readonly int[] _pOffset = new int[2] { _p1Offset, _p2Offset };
+	public static readonly int _frameCountOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("FrameCountOffset"), 16);
+	
+	public static readonly int _charIndexOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("CharIndexOffset"), 16);
 	public static readonly int _HPOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("HPOffset"), 16);
 	public static readonly int _MeterOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("MeterOffset"), 16);
 	public static readonly int _RISCOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("RISCOffset"), 16);
@@ -47,37 +51,17 @@ class MemoryAccessor
 		Player.setHashSets();
 		//Controller.getSticks();
 	}
-
-	public static int ReadStaticInt(int playerNumber)
+	
+	public static IntPtr GetAswEnginePtr()
 	{
-		try
-		{
-			if (playerNumber == 1)
-			{
-				return _memorySharp.Read<int>(_p1CharIndex);
-			}
-			else if (playerNumber == 2)
-			{
-				return _memorySharp.Read<int>(_p2CharIndex);
-			}
-			else
-			{
-				return 0;
-			}
-		}
-		catch (System.ArgumentException)
-		{
-			Dispose();
-			return 0;
-		}
+	    return _memorySharp[_aswEnginePtr].Read<IntPtr>();
 	}
 
 	public static int ReadInfoInt(ref Player player, int offset)
 	{
 		try
 		{
-			IntPtr ptr = _memorySharp[player._playerPtr].Read<IntPtr>(); //player.playerPtr is sometimes not updated
-			int integer = _memorySharp.Read<int>(ptr + offset, false);
+			int integer = _memorySharp.Read<int>(player._playerPtr + offset, false);
 			return integer;
 		}
 		catch (ArgumentException)
@@ -92,8 +76,7 @@ class MemoryAccessor
 	{
 		try
 		{
-			IntPtr ptr = _memorySharp[player._playerPtr].Read<IntPtr>();//
-			float floatnumber = _memorySharp.Read<float>(ptr + offset, false);
+			float floatnumber = _memorySharp.Read<float>(player._playerPtr + offset, false);
 			return floatnumber;
 		}
 		catch (ArgumentException)
@@ -108,8 +91,7 @@ class MemoryAccessor
 	{
 		try
 		{
-			var ptr = _memorySharp[player._playerPtr].Read<IntPtr>();
-			string str = _memorySharp.ReadString(ptr + _AnimStringOffset, false, 32);
+			string str = _memorySharp.ReadString(player._playerPtr + _AnimStringOffset, false, 32);
 			return str;
 		}
 		catch (ArgumentException)
@@ -122,15 +104,19 @@ class MemoryAccessor
 
 	public static void WriteInfoInt(ref Player player, int offset, int value)
 	{
-		IntPtr ptr = _memorySharp[player._playerPtr].Read<IntPtr>();
-		_memorySharp.Write<int>(ptr + offset, value, false);
+		_memorySharp.Write<int>(player._playerPtr + offset, value, false);
 	}
 
 	public static int FrameCount()
 	{
 		try
 		{
-			return _memorySharp.Read<int>(_frameCountOffset); //exception: handle not valid or closed, happens when closing match
+		    IntPtr aswEngPtr = GetAswEnginePtr();
+		    if ((int)aswEngPtr == 0)
+            {
+                return 0;
+            }
+			return _memorySharp.Read<int>(aswEngPtr + _frameCountOffset, false);
 		}
 		catch (System.ArgumentException)
 		{

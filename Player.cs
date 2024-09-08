@@ -86,9 +86,9 @@ class Player
 		};
 	}
 
-	public void assignPlayerPtr(string playerPointerNumber)
+	public void assignPlayerPtr(IntPtr ptr)
 	{
-		_playerPtr = new IntPtr(Convert.ToInt32(ConfigurationManager.AppSettings.Get(playerPointerNumber), 16));
+		_playerPtr = ptr;
 	}
 
 

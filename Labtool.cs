@@ -88,12 +88,13 @@ class Labtool
 		}
 		while (currFrame == prevFrame);
 
-		_player1.characterIndex = MemoryAccessor.ReadStaticInt(_player1._playerNumber);
-		_player2.characterIndex = MemoryAccessor.ReadStaticInt(_player2._playerNumber);
-		_player1.assignPlayerPtr("Player1Ptr");
-		_player2.assignPlayerPtr("Player2Ptr");
+		IntPtr aswEngPtr = MemoryAccessor.GetAswEnginePtr();
+		_player1.assignPlayerPtr(aswEngPtr + MemoryAccessor._p1Offset);
+		_player2.assignPlayerPtr(aswEngPtr + MemoryAccessor._p2Offset);
 
 
+		_player1.characterIndex = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._charIndexOffset);
+		_player2.characterIndex = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._charIndexOffset);
 		_player1._isBlocking = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._BlockstunOffset) != 0;
 		_player2._isBlocking = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._BlockstunOffset) != 0;
 		_player1._isHit = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._HitstunOffset) != 0;
