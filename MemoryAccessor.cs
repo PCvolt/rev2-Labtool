@@ -1,5 +1,6 @@
 ﻿using Binarysharp.MemoryManagement;
 using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
@@ -61,7 +62,15 @@ class MemoryAccessor
 	{
 		try
 		{
-			int integer = _memorySharp.Read<int>(player._playerPtr + offset, false);
+			int integer;
+			try
+			{
+				integer = _memorySharp.Read<int>(player._playerPtr + offset, false);
+			}
+			catch (Win32Exception)
+			{
+				integer = 0;
+			}
 			return integer;
 		}
 		catch (ArgumentException)
@@ -76,7 +85,15 @@ class MemoryAccessor
 	{
 		try
 		{
-			float floatnumber = _memorySharp.Read<float>(player._playerPtr + offset, false);
+			float floatnumber;
+            try
+            {
+				floatnumber = _memorySharp.Read<float>(player._playerPtr + offset, false);
+            }
+            catch (Win32Exception)
+			{
+				floatnumber = 0;
+			}
 			return floatnumber;
 		}
 		catch (ArgumentException)
@@ -91,7 +108,15 @@ class MemoryAccessor
 	{
 		try
 		{
-			string str = _memorySharp.ReadString(player._playerPtr + _AnimStringOffset, false, 32);
+			string str;
+            try
+            {
+				str = _memorySharp.ReadString(player._playerPtr + _AnimStringOffset, false, 32);
+            }
+            catch (Win32Exception)
+			{
+            	str = string.Empty;
+            }
 			return str;
 		}
 		catch (ArgumentException)
@@ -116,7 +141,14 @@ class MemoryAccessor
             {
                 return 0;
             }
-			return _memorySharp.Read<int>(aswEngPtr + _frameCountOffset, false);
+            try
+            {
+				return _memorySharp.Read<int>(aswEngPtr + _frameCountOffset, false);
+            }
+            catch (Win32Exception)
+            {
+            	return 0;
+            }
 		}
 		catch (System.ArgumentException)
 		{

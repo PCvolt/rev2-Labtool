@@ -89,6 +89,12 @@ class Labtool
 		while (currFrame == prevFrame);
 
 		IntPtr aswEngPtr = MemoryAccessor.GetAswEnginePtr();
+		if ((int)aswEngPtr == 0)
+		{
+		    // match not currently running
+		    System.Threading.Thread.Sleep(1000);
+		    return;
+		}
 		_player1.assignPlayerPtr(aswEngPtr + MemoryAccessor._p1Offset);
 		_player2.assignPlayerPtr(aswEngPtr + MemoryAccessor._p2Offset);
 
