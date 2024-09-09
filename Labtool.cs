@@ -126,6 +126,8 @@ class Labtool
 
 		_player1._HP = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._HPOffset);
 		_player2._HP = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._HPOffset);
+		_player1._defenseModifier = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._DefenseModifierOffset);
+		_player2._defenseModifier = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._DefenseModifierOffset);
 		_player1._meter = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._MeterOffset);
 		_player2._meter = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._MeterOffset);
 		_player1._RISC = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._RISCOffset);
@@ -203,7 +205,6 @@ class Labtool
 /*
  * TODO
  * - Find Camera center
- * - Fix character pointers
  * - Fix display when playing as p2 (most probably, find real positions and/or which side they are facing at first)
  * - Find dizzy thresholds and guts in memory
  * 
@@ -212,11 +213,8 @@ class Labtool
  * keyboard key "1" or joystick button 6 (select) do reset the positions you saved by using keyboard key "2". Custom buttons and keys implementation is planned.
  * Consistency of framedata readings improved (the tool may be wrong once every twenty times now, and only by a frame)
  * Using actual blockstun and hitstun values to compute gaps
- * Displays 0F when a combo/blockstring is tight by a frame (accidental, but useful)
  * Dizzy renamed to Stun to avoid confusions with the playable character
  * Stun values corrected: Johnny 7000, I-no 5500
- * Leo backstance is now considered idle
- * Labtool automatically sets Xrd as the foreground window, once booted up
  * 
  * NOTES
  * If stuck falling on the ground indefinitely because of the position reset, you can jump to go back to normal

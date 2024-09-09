@@ -129,11 +129,12 @@ namespace rev2_Labtool_Framework_
 				updateLabel(this.p2xPosLabel, "x: " + _labtool._player2._pos.x / 1000);
 				updateLabel(this.p2yPosLabel, "y: " + _labtool._player2._pos.y / 1000);
 
-				// Player is always #1, dummy is always #2, how to find which character is at which side ?
 				updateLabel(this.p1CharLabel, "(Player)" + Player.charactersList[_labtool._player1.characterIndex]);
 				updateLabel(this.p2CharLabel, Player.charactersList[_labtool._player2.characterIndex]);
-				updateLabel(this.p1DefModifLabel, "[x" + Player.defmodifList[_labtool._player1.characterIndex] + "]");
-				updateLabel(this.p2DefModifLabel, "[x" + Player.defmodifList[_labtool._player2.characterIndex] + "]");
+
+				
+				updateLabel(this.p1DefModifLabel, "[x" + _labtool._player1.getDefenseModifier() + "]");
+				updateLabel(this.p2DefModifLabel, "[x" + _labtool._player2.getDefenseModifier() + "]");
 				updateLabel(this.p1StunLabel, "" + _labtool._player1._stun + "/" + Player.stunList[_labtool._player1.characterIndex]);
 				updateLabel(this.p2StunLabel, "" + _labtool._player2._stun + "/" + Player.stunList[_labtool._player2.characterIndex]);
 				updateLabel(this.p1GutsLabel, "(x guts)");

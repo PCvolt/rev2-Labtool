@@ -22,6 +22,7 @@ class MemoryAccessor
 	
 	public static readonly int _charIndexOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("CharIndexOffset"), 16);
 	public static readonly int _HPOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("HPOffset"), 16);
+	public static readonly int _DefenseModifierOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("DefenseModifierOffset"), 16);
 	public static readonly int _MeterOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("MeterOffset"), 16);
 	public static readonly int _RISCOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("RISCOffset"), 16);
 	public static readonly int _PositionXOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("PositionXOffset"), 16);
