@@ -135,8 +135,8 @@ namespace rev2_Labtool_Framework_
 				
 				updateLabel(this.p1DefModifLabel, "[x" + _labtool._player1.getDefenseModifier() + "]");
 				updateLabel(this.p2DefModifLabel, "[x" + _labtool._player2.getDefenseModifier() + "]");
-				updateLabel(this.p1StunLabel, "" + _labtool._player1._stun + "/" + Player.stunList[_labtool._player1.characterIndex]);
-				updateLabel(this.p2StunLabel, "" + _labtool._player2._stun + "/" + Player.stunList[_labtool._player2.characterIndex]);
+				updateLabel(this.p1StunLabel, "" + _labtool._player1._stun + "/" + _labtool._player1._stunThreshold * 100);
+				updateLabel(this.p2StunLabel, "" + _labtool._player2._stun + "/" + _labtool._player2._stunThreshold * 100);
 				updateLabel(this.p1GutsLabel, "(x guts)");
 				updateLabel(this.p2GutsLabel, "(x guts)");
 			}

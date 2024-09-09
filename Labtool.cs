@@ -134,6 +134,8 @@ class Labtool
 		_player2._RISC = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._RISCOffset);
 		_player1._stun = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._StunOffset);
 		_player2._stun = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._StunOffset);
+		_player1._stunThreshold = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._StunThresholdOffset);
+		_player2._stunThreshold = MemoryAccessor.ReadInfoInt(ref _player2, MemoryAccessor._StunThresholdOffset);
 
 		_player1._pos.x = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._PositionXOffset);
 		_player1._pos.y = MemoryAccessor.ReadInfoInt(ref _player1, MemoryAccessor._PositionYOffset);

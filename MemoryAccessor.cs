@@ -29,6 +29,7 @@ class MemoryAccessor
 	public static readonly int _PositionYOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("PositionYOffset"), 16);
 	public static readonly int _AnimStringOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("AnimStringOffset"), 16);
 	public static readonly int _StunOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("StunOffset"), 16);
+	public static readonly int _StunThresholdOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("StunThresholdOffset"), 16);
 
 	public static readonly int _BlockstunOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("BlockstunOffset"), 16);
 	public static readonly int _HitstunOffset = Convert.ToInt32(ConfigurationManager.AppSettings.Get("HitstunOffset"), 16);

@@ -28,6 +28,7 @@ class Player
 	public int _meter;
 	public int _RISC;
 	public int _stun;
+	public int _stunThreshold;
 	public bool _isBlocking = false;
 	public bool _isHit = false;
 	public int _hitstop;
